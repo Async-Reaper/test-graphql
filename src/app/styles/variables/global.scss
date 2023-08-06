@@ -1,0 +1,30 @@
+:root {
+    --font-family: "PT-Sans", serif;
+    --font-size: 16px;
+    --font-weight: 500;
+
+    --container-size: 1300px;
+
+    // Цвета
+    --color-white: #ffffff;
+
+    --color-primary: #5D5FEF;
+    --color-secondary: #EF5DA8;
+
+    --color-blue: #3877EE;
+    --color-light: #3A6CE9;
+    --color-dark: #0C286E;
+
+    --color-grey: #42567A;
+    --color-grey-light: rgba(66, 86, 122, 0.5);
+    --color-grey-dark: rgba(48, 62, 88, 0.5);
+    --backgroud-color: #F4F5F9;
+
+    // Эффекты
+    --hover-effect: brightness(1.2);
+
+    //Радиусы
+    --border-radius-xs: 4px;
+    --border-radius-l: 8px;
+    --border-radius-xl: 12px;
+}
