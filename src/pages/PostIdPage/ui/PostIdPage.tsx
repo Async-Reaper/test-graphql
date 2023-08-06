@@ -1,8 +1,13 @@
+import {PostCard} from "@widgets/PostCard";
+import {useNavigate} from "react-router-dom";
+import {Button} from "antd";
 
 const PostIdPage = () => {
+   const navigate = useNavigate();
    return (
       <div>
-            PostIdPage
+         <Button type="link" onClick={() => navigate("/posts")}>Back to posts</Button>
+         <PostCard />
       </div>
    );
 };
