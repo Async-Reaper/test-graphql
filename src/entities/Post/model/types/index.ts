@@ -5,10 +5,10 @@ export interface IPost {
    title: string;
    body: string
    user: IUser;
-   comments: IComment[];
+   comments: { data: IComment[] };
 }
 
-interface IComment {
+export interface IComment {
    id: number;
    name: string;
    body: string;
