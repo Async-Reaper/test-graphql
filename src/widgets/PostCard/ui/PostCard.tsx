@@ -4,8 +4,8 @@ import {GET_ID_POST, IPost} from "@entities/Post";
 import {Button, Card, Col, Skeleton, Space} from "antd";
 import Paragraph from "antd/es/typography/Paragraph";
 import {useParams} from "react-router-dom";
-import Title from "antd/es/typography/Title";
 import {DeletePostModal} from "@features/DeletePost";
+import {PostComments} from "@widgets/PostCard/ui/PostComments/PostComments";
 
 const Component = () => {
    const params = useParams();
@@ -31,7 +31,7 @@ const Component = () => {
       } else if (error) {
          console.log(error);
       }
-   }, [loading, data]);
+   }, [loading, data, error]);
 
    return (
       <>
@@ -45,18 +45,9 @@ const Component = () => {
                         <Button type="primary" danger onClick={showModal}>Delete</Button>
                      </Col>
                   </Card>
-                  <Title level={3}>
-                      Comments
-                  </Title>
                   {
-                     post?.comments.data.map((comment) =>
-                        <Card key={comment.id}>
-                           <Col className="gutter-row">
-                              <Title level={5}>Name: {comment?.name}</Title>
-                              <Paragraph>{comment.body}</Paragraph>
-                           </Col>
-                        </Card>
-                     )
+                     post?.comments.data &&
+                      <PostComments comments={post.comments.data} />
                   }
                </Space>
          }

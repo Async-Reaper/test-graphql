@@ -1,8 +1,8 @@
 import {Suspense} from "react";
 import {ApolloProviderUI, AppRouter, ContextProvider} from "@app/providers";
-import {Progress} from "antd";
 import {BrowserRouter} from "react-router-dom";
-import {Container} from "@shared/ui";
+import {Container, Loader} from "@shared/ui";
+import {Header} from "@widgets/Header";
 
 function App() {
 
@@ -11,8 +11,9 @@ function App() {
          <ContextProvider>
             <BrowserRouter>
                <div className="app">
-                  <Suspense fallback={<Progress type="circle" />}>
+                  <Suspense fallback={<Loader />}>
                      <Container>
+                        <Header />
                         <AppRouter />
                      </Container>
                   </Suspense>
