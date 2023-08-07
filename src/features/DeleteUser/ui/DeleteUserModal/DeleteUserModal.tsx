@@ -1,6 +1,6 @@
 import {memo} from "react";
 import {Modal} from "antd";
-import {DeletePostForm} from "../DeletePostForm/DeletePostForm";
+import {DeleteUserForm} from "../DeleteUserForm/DeleteUserForm";
 
 interface Props {
    id: number;
@@ -8,10 +8,10 @@ interface Props {
    onClose: () => void;
 }
 
-export const DeletePostModal = memo(({id, isOpen, onClose}: Props) => {
+export const DeleteUserModal = memo(({id, isOpen, onClose}: Props) => {
    return (
       <Modal title="Create post" open={isOpen} onCancel={onClose} footer={[""]}>
-         <DeletePostForm id={id} onClose={onClose} />
+         <DeleteUserForm id={id} onClose={onClose} />
       </Modal>
    );
 });

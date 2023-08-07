@@ -1,4 +1,4 @@
-import React from "react";
+import {memo} from "react";
 import {Modal} from "antd";
 import {CreatePostForm} from "../CreatePostForm/CreatePostForm";
 
@@ -7,12 +7,10 @@ interface Props {
    onClose: () => void;
 }
 
-const Component = ({isOpen, onClose}: Props) => {
+export const CreatePostModal = memo(({isOpen, onClose}: Props) => {
    return (
       <Modal title="Create post" open={isOpen} onCancel={onClose} footer={[""]}>
          <CreatePostForm onClose={onClose} />
       </Modal>
    );
-};
-
-export const CreatePostModal = React.memo(Component);
+});
