@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
 import {ApolloProvider} from "@apollo/client";
-import {client} from "../config/apollo";
+import {client} from "../config/apolloConfig";
 
 interface Props {
    children: ReactNode;

@@ -1,7 +1,9 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useContext, useState} from "react";
 import {Button, Space} from "antd";
 import {useMutation} from "@apollo/client";
 import Paragraph from "antd/es/typography/Paragraph";
+import {useNavigate} from "react-router-dom";
+import {PopupContext} from "@app/providers/ContextProvider/PopupContext";
 
 import {DELETE_POST} from "../../model/query/deletePostQuery";
 
@@ -14,7 +16,8 @@ interface Props {
 const Component = ({id, onClose}: Props) => {
    const [newPost] = useMutation(DELETE_POST);
    const [isLoading, setIsLoading] = useState<boolean>(false);
-
+   const navigate = useNavigate();
+   const {setIsDeletePost} = useContext(PopupContext);
 
    const onDeletePost = useCallback(() => {
       setIsLoading(true);
@@ -23,6 +26,8 @@ const Component = ({id, onClose}: Props) => {
             id
          }
       }).then(() => {
+         setIsDeletePost(true);
+         navigate("/posts");
          setIsLoading(false);
          onClose();
       }).catch((e) => {

@@ -9,7 +9,7 @@ interface Props {
 
 export const CreateUserModal = memo(({isOpen, onClose}: Props) => {
    return (
-      <Modal title="Create post" open={isOpen} onCancel={onClose} footer={[""]}>
+      <Modal title="Create user" open={isOpen} onCancel={onClose} footer={[""]}>
          <CreateUserForm onClose={onClose} />
       </Modal>
    );

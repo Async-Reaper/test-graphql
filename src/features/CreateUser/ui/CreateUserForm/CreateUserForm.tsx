@@ -1,6 +1,8 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Button, Input, Space} from "antd";
 import {useMutation} from "@apollo/client";
+import {PopupContext} from "@app/providers/ContextProvider/PopupContext";
+
 import {ICreateUser} from "../../model/types";
 import {CREATE_USER} from "../../model/query/createUserQuery";
 
@@ -13,6 +15,7 @@ const Component = ({onClose}: Props) => {
    const [username, setUsername] = useState<string>("");
    const [email, setEmail] = useState<string>("");
    const [phone, setPhone] = useState<string>("");
+   const {setIsCreateUser} = useContext(PopupContext);
 
    const [isDisabled, setIsDisabled] = useState<boolean>(true);
    const [newUser] = useMutation(CREATE_USER);
@@ -32,6 +35,7 @@ const Component = ({onClose}: Props) => {
             input: dataCreatePost
          }
       }).then(() => {
+         setIsCreateUser(true);
          setName("");
          setUsername("");
          setEmail("");
@@ -40,6 +44,7 @@ const Component = ({onClose}: Props) => {
          setIsDisabled(true);
          onClose();
       }).catch((e) => {
+         setIsLoading(false);
          console.log(e);
       });
    }, [
@@ -85,7 +90,7 @@ const Component = ({onClose}: Props) => {
             onChange={(e) => setEmail(e.target.value)}
          />
          <Input
-            placeholder="body"
+            placeholder="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
          />

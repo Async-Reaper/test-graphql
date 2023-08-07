@@ -1,8 +1,9 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Button, Input, Space} from "antd";
 import {useMutation} from "@apollo/client";
 import {ICreatePost} from "../../model/types";
 import {CREATE_POST} from "../../model/query/createPostQuery";
+import {PopupContext} from "@app/providers/ContextProvider/PopupContext";
 
 interface Props {
    onClose: () => void;
@@ -14,8 +15,9 @@ const Component = ({onClose}: Props) => {
    const [isDisabled, setIsDisabled] = useState<boolean>(true);
    const [newPost] = useMutation(CREATE_POST);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const {setIsCreatePost} = useContext(PopupContext);
 
-   const dataCreatePost: ICreatePost = {
+   const dataCreateUser: ICreatePost = {
       title,
       body
    };
@@ -24,18 +26,20 @@ const Component = ({onClose}: Props) => {
       setIsLoading(true);
       newPost({
          variables: {
-            input: dataCreatePost
+            input: dataCreateUser
          }
       }).then(() => {
+         setIsCreatePost(true);
          setIsLoading(false);
          setTitle("");
          setBody("");
          setIsDisabled(true);
          onClose();
       }).catch((e) => {
+         setIsLoading(false);
          console.log(e);
       });
-   }, [dataCreatePost, setTitle, setBody, setIsDisabled, setIsLoading, newPost]);
+   }, [dataCreateUser, setTitle, setBody, setIsDisabled, setIsLoading, newPost]);
 
    useEffect(() => {
       if (title === "" || body === "") {
